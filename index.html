@@ -72,13 +72,12 @@
   <section id="cupola" class="hero" aria-labelledby="home-title">
     <div>
       <h1 id="home-title">See Earth like an astronaut. Float like in space.</h1>
-      <p class="lead">Interactive pixel experience showing the Cupola view and neutral buoyancy training. Lightweight and accessible — ideal for student audiences.</p>
+      <p class="lead">Cupola view and neutral buoyancy training..</p>
       <a class="cta" href="#cupola">Start Experience</a>
     </div>
 
     <div class="panel canvas-box" aria-hidden="false">
-      <!-- Earth animation canvas -->
-      <canvas id="earthCanvas" width="400" height="400" role="img" aria-label="Animated pixel Earth"></canvas>
+      <img src="earth.png"style="height:90%;width:90%;border-radius:20px;">
     </div>
       <div class="panel" style="width:340px">
         <h3 style="margin:0 0 8px;font-size:13px;color:var(--yellow)">What Astronauts See</h3>
@@ -132,7 +131,7 @@
   ctx.imageSmoothingEnabled = false;
 
   const astronautImg = new Image();
-  astronautImg.src = 'astronaut.png'; // put this file next to index.html
+  astronautImg.src = 'astronaut.jpg'; // put this file next to index.html
 
   const state = { x: canvas.width/2, y: canvas.height/2, vx:0, vy:0, thr:120, damping:0.998 };
   const keys = {};
