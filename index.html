@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Window of the World — Pixel Edition</title>
+
+<!-- Optional: pixel font (works if network is available). Remove if you need pure offline. -->
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg-1:#071232; --bg-2:#0b2340; --panel: rgba(255,255,255,0.04);
+    --accent:#ff9f43; --muted:#bcd3ff; --text:#eaf2ff; --yellow:#ffd76a; --blue:#1f91ff;
+  }
+  html,body{height:100%;margin:0;font-family:"Press Start 2P",monospace;background:linear-gradient(var(--bg-1),var(--bg-2) 60%);color:var(--text);-webkit-font-smoothing:antialiased}
+  header{position:fixed;left:0;right:0;top:0;height:72px;background:rgba(3,9,24,0.6);display:flex;align-items:center;justify-content:space-between;padding:12px 20px;z-index:50;border-bottom:2px solid rgba(255,255,255,0.03)}
+  .brand{display:flex;gap:14px;align-items:center}
+  .logo{width:46px;height:46px;border-radius:6px;background:linear-gradient(135deg,#183b8a,var(--blue));display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--yellow);box-shadow:0 4px 8px rgba(0,0,0,0.4)}
+  nav a{color:var(--muted);text-decoration:none;margin-left:14px;font-size:12px}
+  nav a:hover{color:#fff}
+  main{padding-top:92px}
+
+  section{padding:56px 20px;max-width:1100px;margin:0 auto}
+  .hero{display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center}
+  h1{font-size:30px;color:var(--yellow);margin:0 0 8px}
+  p.lead{color:var(--muted);font-size:11px;line-height:1.6;margin:0 0 10px}
+  .cta{display:inline-block;padding:12px 18px;background:var(--accent);color:var(--bg-1);border-radius:8px;text-decoration:none;margin-top:10px;font-size:11px}
+  .panel{background:var(--panel);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.03)}
+  .cupola-wrap{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:center}
+  .canvas-box{width:420px;height:420px;display:flex;align-items:center;justify-content:center}
+  canvas{image-rendering:pixelated;border-radius:10px;background:linear-gradient(var(--bg-1),var(--bg-2))}
+  .weightless-area{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}
+  .wl-canvas{width:600px;height:360px;background:#08132a;border-radius:8px;border:2px solid rgba(255,255,255,0.03);display:block}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:12px}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);text-align:center}
+  .card h4{margin:8px 0 0;font-size:11px;color:#fff}
+  .muted{color:var(--muted);font-size:11px}
+  footer{padding:28px;text-align:center;color:var(--muted);font-size:11px}
+
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr;text-align:center}
+    .canvas-box{width:320px;height:320px}
+    .wl-canvas{width:100%;height:300px}
+    nav{display:none}
+  }
+
+  /* small helper (visible focus outlines for keyboard nav) */
+  a:focus, button:focus { outline: 3px solid rgba(31,145,255,0.25); outline-offset:2px }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo" aria-hidden="true">WOW</div>
+    <div>
+      <div style="font-size:12px">WINDOW OF THE WORLD</div>
+      <div style="font-size:9px;color:var(--muted)">For the 25th anniversary of the ISS</div>
+    </div>
+  </div>
+  <nav aria-label="Main navigation">
+    <a href="#cupola">Cupola</a>
+    <a href="#weightlessness">Weightlessness</a>
+    <a href="#benefits">Benefits</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<main>
+  <!-- CUPOLA -->
+  <section id="cupola" class="hero" aria-labelledby="home-title">
+    <div>
+      <h1 id="home-title">See Earth like an astronaut. Float like in space.</h1>
+      <p class="lead">Interactive pixel experience showing the Cupola view and neutral buoyancy training. Lightweight and accessible — ideal for student audiences.</p>
+      <a class="cta" href="#cupola">Start Experience</a>
+    </div>
+
+    <div class="panel canvas-box" aria-hidden="false">
+      <!-- Earth animation canvas -->
+      <canvas id="earthCanvas" width="400" height="400" role="img" aria-label="Animated pixel Earth"></canvas>
+    </div>
+      <div class="panel" style="width:340px">
+        <h3 style="margin:0 0 8px;font-size:13px;color:var(--yellow)">What Astronauts See</h3>
+        <p class="muted" style="font-size:11px">Astronauts aboard the ISS orbit Earth every ~90 minutes and help scientists track climate, disasters, and environmental change.</p>
+        <a class="cta" href="#benefits" style="display:inline-block;margin-top:8px;padding:8px 12px;font-size:11px">See Benefits</a>
+      </div>
+  </section>
+
+  <!-- WEIGHTLESS -->
+  <section id="weightlessness" aria-labelledby="wl-title">
+    <h2 id="wl-title" style="color:var(--yellow)">Weightlessness (NBL)</h2>
+    <div class="weightless-area">
+      <div class="panel" style="flex:1 1 620px">
+        <div class="muted" style="margin-bottom:8px">Arrow keys / WASD to apply thrust. Space resets to center. Small damping simulates tiny resistance so motion slows slightly over time.</div>
+        <canvas id="wlCanvas" class="wl-canvas" width="600" height="360" role="img" aria-label="Weightlessness simulation"></canvas>
+      </div>
+
+      <div style="width:320px" class="panel">
+        <h3 style="margin:0 0 8px;font-size:13px;color:var(--yellow)">Neutral Buoyancy Lab</h3>
+        <p class="muted" style="font-size:11px">Astronauts train underwater in the NBL to rehearse spacewalks. The movement & skills translate to robotics, medicine, and remote operations on Earth.</p>
+        <div style="margin-top:10px"><button id="resetWl" class="cta" style="padding:10px 12px;cursor:pointer">Reset Astronaut</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section id="benefits" aria-labelledby="benefits-title">
+    <h2 id="benefits-title" style="color:var(--yellow)">Benefits on Earth</h2>
+    <div class="grid">
+      <div class="card"><h4>Climate Monitoring</h4></br><div class="muted">Satellites track weather, deforestation, and ice loss.</div></div>
+      <div class="card"><h4>Medical Advancements</h4></br><div class="muted">Microgravity research improves surgical tools and therapies.</div></div>
+      <div class="card"><h4>Robotics</h4></br><div class="muted">Space robotics transfers to industry and exploration tech.</div></div>
+      <div class="card"><h4>Ocean Research</h4></br><div class="muted">Observation supports oceanography and disaster response.</div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" aria-labelledby="about-title">
+    <h2 id="about-title" style="color:var(--yellow);">About My Team</h2>
+    <div class="panel muted" style="height:100px;">I am a 17y old self-taught programmer and high </br> school student from Madagascar passionate </br> about coding and astronomy. This project focuses on clarity, teaching,</br> and a retro pixel aesthetic that runs in any browser.</div>
+  </section>
+</main>
+
+<footer>Created for NASA Space Apps Challenge 2025 — Team: GasyCode</footer>
+
+<script>
+/* Astronaut inertia sim with image */
+(function(){
+  const canvas = document.getElementById('wlCanvas');
+  const ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = false;
+
+  const astronautImg = new Image();
+  astronautImg.src = 'astronaut.png'; // put this file next to index.html
+
+  const state = { x: canvas.width/2, y: canvas.height/2, vx:0, vy:0, thr:120, damping:0.998 };
+  const keys = {};
+
+  window.addEventListener('keydown', e=>{ keys[e.key]=true; if(e.key===' '){ e.preventDefault(); reset(); } });
+  window.addEventListener('keyup', e=>keys[e.key]=false);
+  document.getElementById('resetWl').addEventListener('click', reset);
+
+  function reset(){ state.x=canvas.width/2; state.y=canvas.height/2; state.vx=0; state.vy=0; }
+
+  function step(dt){
+    let ax=0, ay=0;
+    if(keys['ArrowLeft']||keys['a']) ax-=state.thr;
+    if(keys['ArrowRight']||keys['d']) ax+=state.thr;
+    if(keys['ArrowUp']||keys['w']) ay-=state.thr;
+    if(keys['ArrowDown']||keys['s']) ay+=state.thr;
+    state.vx+=ax*dt; state.vy+=ay*dt;
+    state.x+=state.vx*dt; state.y+=state.vy*dt;
+    state.vx*=state.damping; state.vy*=state.damping;
+  }
+
+  function draw(){
+    ctx.fillStyle='#07132a'; ctx.fillRect(0,0,canvas.width,canvas.height);
+    const size=40;
+    if(astronautImg.complete && astronautImg.naturalWidth){
+      ctx.drawImage(astronautImg,state.x-size/2,state.y-size/2,size,size);
+    } else {
+      ctx.fillStyle='#c8f0ff'; ctx.fillRect(state.x-12,state.y-12,24,24);
+    }
+  }
+
+  let last=performance.now();
+  function loop(ts){
+    const dt=Math.min(0.05,(ts-last)/1000); last=ts;
+    step(dt); draw(); requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
